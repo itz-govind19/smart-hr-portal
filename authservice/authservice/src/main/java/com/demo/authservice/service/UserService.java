@@ -73,7 +73,7 @@ public class UserService {
             throw new RuntimeException("Invalid credentials");
         }
 
-        return jwtUtil.generateToken(request.getUsername(), request.getRole());
+        return "Bearer "+ jwtUtil.generateToken(request.getUsername(), request.getRole());
     }
 
     // Validate JWT

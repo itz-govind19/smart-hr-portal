@@ -1,5 +1,6 @@
 package com.demo.authservice.controller;
 
+import com.demo.authservice.constant.Constants;
 import com.demo.authservice.dto.AuthResponse;
 import com.demo.authservice.dto.LoginRequest;
 import com.demo.authservice.dto.RegisterRequest;
@@ -9,7 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import static com.demo.authservice.constant.Constants.BASE_URL;
+
 @RestController
+@RequestMapping(BASE_URL)
 public class AuthController {
 
     @Autowired
