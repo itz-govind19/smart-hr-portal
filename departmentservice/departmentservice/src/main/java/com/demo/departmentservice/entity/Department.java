@@ -1,7 +1,13 @@
 package com.demo.departmentservice.entity;
 
-import jakarta.persistence.*;
-import lombok.*;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
@@ -17,5 +23,5 @@ public class Department {
 
     private String description;
 
-    private Long managerId; // reference to Employee in employee-service
+    private Long managerId;
 }
