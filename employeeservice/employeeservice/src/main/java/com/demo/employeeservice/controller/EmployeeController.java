@@ -17,17 +17,19 @@ public class EmployeeController {
 
     private final EmployeeService employeeService;
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
     @PostMapping("/create")
     public ResponseEntity<Employee> create(@RequestBody Employee employee) {
         return ResponseEntity.ok(employeeService.create(employee));
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER', 'EMPLOYEE')")
     @PutMapping("/{id}")
     public ResponseEntity<Employee> update(@PathVariable Long id, @RequestBody Employee employee) {
         return ResponseEntity.ok(employeeService.update(id, employee));
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER', 'EMPLOYEE')")
     @GetMapping("/{id}")
     public ResponseEntity<Employee> get(@PathVariable Long id) {
         return ResponseEntity.ok(employeeService.getById(id));
