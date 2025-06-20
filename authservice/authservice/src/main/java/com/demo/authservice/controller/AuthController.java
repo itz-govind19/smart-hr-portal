@@ -1,6 +1,5 @@
-package com.demo.authservice.Controller;
+package com.demo.authservice.controller;
 
-import com.demo.authservice.constant.Constants;
 import com.demo.authservice.dto.ApiResponse;
 import com.demo.authservice.dto.AuthResponse;
 import com.demo.authservice.dto.LoginRequest;

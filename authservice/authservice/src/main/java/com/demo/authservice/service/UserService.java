@@ -17,6 +17,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -63,6 +64,15 @@ public class UserService {
 
     // Login
     public String authenticate(LoginRequest request) {
+        User byUsername = userRepository.findByUsername(request.getUsername());
+        Set<Role> roles = byUsername.getRoles();
+        Optional<Role> first = roles.stream().findFirst();
+        String role = null;
+        if (first.isPresent()) {
+            role = first.get().getName();
+        }else {
+            throw new RuntimeException("Invalid User OR Role not found");
+        }
         try {
             Authentication auth = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
@@ -73,7 +83,7 @@ public class UserService {
             throw new RuntimeException("Invalid credentials");
         }
 
-        return "Bearer "+ jwtUtil.generateToken(request.getUsername(), request.getRole());
+        return "Bearer "+ jwtUtil.generateToken(request.getUsername(), role);
     }
 
     // Validate JWT
