@@ -42,7 +42,7 @@ public class UserService {
     private UserDetailsService userDetailsService;
 
     // Registration
-    public String register(RegisterRequest request) {
+    public User register(RegisterRequest request) {
         if (userRepository.existsByUsername(request.getUsername())) {
             throw new RuntimeException("Username already exists");
         }
@@ -58,7 +58,7 @@ public class UserService {
 
         user.setRoles(roles);
         userRepository.save(user);
-        return "User registered successfully";
+        return user;
     }
 
     // Login
