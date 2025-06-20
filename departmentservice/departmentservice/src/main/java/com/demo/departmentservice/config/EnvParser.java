@@ -18,9 +18,9 @@ public class EnvParser {
     private String dbUrl;
 
     @Value("${db2user}")
-    private long dbUser;
+    private String dbUser;
 
     @Value("${db2password}")
-    private long dbPassword;
+    private String dbPassword;
 
 }
